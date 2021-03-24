@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.local/share/containers/storage
-          key: ${{ runner.os }}-podman
+          key: ${{ runner.os }}-cache-${{ hashFiles('Dockerfile') }}
           restore-keys: ${{ runner.os }}-restore
       - name: Build container
         run: podman build -t ictu/zap2docker-weekly . 
