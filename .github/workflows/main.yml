@@ -37,6 +37,6 @@ jobs:
           restore-keys: ${{ runner.os }}-restore
       - name: Build container
         run: podman build -t ictu/zap2docker-weekly . 
-      - name: change ownership for cache
+      - name: change accessibility for cache
         run: podman unshare chmod -R 755 ~/.local/share/containers/storage/
         
