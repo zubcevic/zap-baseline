@@ -38,5 +38,5 @@ jobs:
       - name: Build container
         run: podman build -t ictu/zap2docker-weekly . 
       - name: change ownership for cache
-        run: podman unshare chown -R $(id -u):$(id -g) ~/.local/share/containers/storage/
+        run: podman unshare chown -R runner:runner ~/.local/share/containers/storage/
         
