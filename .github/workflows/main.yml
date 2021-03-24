@@ -33,10 +33,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.local/share/containers/storage
-          key: ${{ runner.os }}-cache-${{ hashFiles('Dockerfile') }}
+          key: ${{ runner.os }}-cache-v1-${{ hashFiles('Dockerfile') }}
           restore-keys: ${{ runner.os }}-restore
       - name: Build container
         run: podman build -t ictu/zap2docker-weekly . 
       - name: change ownership for cache
-        run: podman unshare chown -R runner:runner ~/.local/share/containers/storage/
+        run: podman unshare chmod -R 755 ~/.local/share/containers/storage/
         
