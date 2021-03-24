@@ -29,5 +29,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check podman version
         run: podman --version 
+      - name: Cache Container images
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/containers/storage
+          key: ${{ runner.os }}-podman-${{ hashFiles('Dockerfile') }}
+          restore-keys: ${{ runner.os }}-podman
       - name: Build container
         run: podman build -t ictu/zap2docker-weekly . 
+        
